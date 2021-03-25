@@ -1,0 +1,14 @@
+% CPU scénario 1 
+Task_1 => 0.264%
+Task_2 => 0.264%
+Task_Writ => 71.8 % 
+IDLE => 24.5%
+
+Notre Task_Writ n'est pas des plus optimisées, à cause de la fonction my_printf()
+Le CPU passe la majeure partie de son temps dans Task_Writ.
+
+% CPU scénario 2 
+Task_1 => 0.255%
+Task_2 => 0.184%
+Task_Writ =>  0.89%
+IDLE => 85,1%
