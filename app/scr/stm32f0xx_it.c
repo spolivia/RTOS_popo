@@ -100,44 +100,47 @@ void HardFault_Handler(void)
 /*  file (startup_stm32f0xx.s).                                               */
 /******************************************************************************/
 
-/*
- * This function handles USART2 interrupts
- */
-extern xSemaphoreHandle xSemUART2_TC;
+/**
+  * This function handles EXTI line 13 interrupt request.
+  */
 
-void USART2_IRQHandler()
+extern xSemaphoreHandle xSemPB;
+
+void EXTI4_15_IRQHandler()
 {
-	portBASE_TYPE xHigherPriorityTaskWoken = pdFALSE;
-
-	if ((USART2->ISR & USART_ISR_TC) == USART_ISR_TC)
+	// Test for line 13 pending interrupt
+	if ((EXTI->PR & EXTI_PR_PR13_Msk) != 0)
 	{
-		// clear flag
-		USART2->ICR |= USART_ICR_TCCF;
+		// Clear pending bit 13 by writing a '1'
+        // Do not use OR masking here
+		EXTI->PR = EXTI_PR_PR13;
 
-		// Release the semaphore
-		xSemaphoreGiveFromISR(xSemUART2_TC, &xHigherPriorityTaskWoken);
-
-	    // Perform a context switch to the waiting task
-	    portEND_SWITCHING_ISR(xHigherPriorityTaskWoken);
+		xSemaphoreGive(xSemPB);
 	}
 }
 
-/**
-  * @brief  This function handles PPP interrupt request.
-  * @param  None
-  * @retval None
-  */
-/*void PPP_IRQHandler(void)
+/*
+ * This function handles USART2 interrupts
+ */
+
+extern xSemaphoreHandle xSem_DMA_TC;
+
+void DMA1_Channel4_5_IRQHandler()
 {
-}*/
+    portBASE_TYPE xHigherPriorityTaskWoken = pdFALSE;
 
+    if ((DMA1->ISR & DMA_ISR_TCIF4) == DMA_ISR_TCIF4)
+    {
+        // clear flag
+        DMA1-> IFCR |= DMA_ISR_TCIF4;
 
-/**
-  * @}
-  */ 
+        // Release the semaphore
+        xSemaphoreGiveFromISR(xSem_DMA_TC, &xHigherPriorityTaskWoken);
 
-/**
-  * @}
-  */
+        // Perform a context switch to the waiting task
+        portEND_SWITCHING_ISR(xHigherPriorityTaskWoken);
+    }
+
+}
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

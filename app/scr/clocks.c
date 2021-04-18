@@ -1,13 +1,14 @@
 /*
- * clock.c
+ * clocks.c
  *
- *  Created on: 25 mars 2021
- *      Author: Olivia
+ *  Created on: 18 févr. 2021
+ *      Author: Gabin
  */
 
-
 #include "main.h"
-#include "clock.h"
+#include "clocks.h"
+
+
 
 /*
  * 	Clock configuration for the Nucleo STM32F072RB board

@@ -97,7 +97,7 @@ extern "C" {
  * TRC_RECORDER_MODE_SNAPSHOT
  * TRC_RECORDER_MODE_STREAMING
  ******************************************************************************/
-#define TRC_CFG_RECORDER_MODE TRC_RECORDER_MODE_SNAPSHOT
+#define TRC_CFG_RECORDER_MODE TRC_RECORDER_MODE_STREAMING
 
 /******************************************************************************
  * TRC_CFG_FREERTOS_VERSION
@@ -148,7 +148,7 @@ extern "C" {
  *
  * Default value is 1.
  *****************************************************************************/
-#define TRC_CFG_INCLUDE_MEMMANG_EVENTS 1
+#define TRC_CFG_INCLUDE_MEMMANG_EVENTS 0
 
  /******************************************************************************
  * TRC_CFG_INCLUDE_USER_EVENTS
@@ -173,7 +173,7 @@ extern "C" {
  *
  * Default value is 1.
  *****************************************************************************/
-#define TRC_CFG_INCLUDE_USER_EVENTS 1
+#define TRC_CFG_INCLUDE_USER_EVENTS 0
 
  /*****************************************************************************
  * TRC_CFG_INCLUDE_ISR_TRACING
@@ -195,7 +195,7 @@ extern "C" {
  * Note: tracing ISRs requires that you insert calls to vTraceStoreISRBegin
  * and vTraceStoreISREnd in your interrupt handlers.
  *****************************************************************************/
-#define TRC_CFG_INCLUDE_ISR_TRACING 1
+#define TRC_CFG_INCLUDE_ISR_TRACING 0
 
  /*****************************************************************************
  * TRC_CFG_INCLUDE_READY_EVENTS
@@ -223,7 +223,7 @@ extern "C" {
  *
  * Default value is 1.
  *****************************************************************************/
-#define TRC_CFG_INCLUDE_OSTICK_EVENTS 0    // Disable the recording of OS tick events
+#define TRC_CFG_INCLUDE_OSTICK_EVENTS 0
 
  /*****************************************************************************
  * TRC_CFG_INCLUDE_EVENT_GROUP_EVENTS
@@ -234,7 +234,7 @@ extern "C" {
  *
  * Default value is 0 (excluded) since dependent on event_groups.c
  *****************************************************************************/
-#define TRC_CFG_INCLUDE_EVENT_GROUP_EVENTS 0
+#define TRC_CFG_INCLUDE_EVENT_GROUP_EVENTS 1
 
  /*****************************************************************************
  * TRC_CFG_INCLUDE_TIMER_EVENTS
@@ -281,7 +281,7 @@ extern "C" {
  * In snapshot mode, the TzCtrl task is only used for stack monitoring and is
  * not created unless this is enabled.
  *****************************************************************************/
-#define TRC_CFG_ENABLE_STACK_MONITOR 1
+#define TRC_CFG_ENABLE_STACK_MONITOR 0
 
  /******************************************************************************
  * TRC_CFG_STACK_MONITOR_MAX_TASKS
@@ -314,7 +314,7 @@ extern "C" {
  *
  * Default value is 1.
  *****************************************************************************/
-#define TRC_CFG_STACK_MONITOR_MAX_REPORTS 1
+#define TRC_CFG_STACK_MONITOR_MAX_REPORTS 0
 
  /*******************************************************************************
  * Configuration Macro: TRC_CFG_CTRL_TASK_PRIORITY
@@ -332,7 +332,7 @@ extern "C" {
  * not created if stack monitoring is disabled. TRC_CFG_CTRL_TASK_PRIORITY should
  * be low, to avoid disturbing any time-sensitive tasks.
  ******************************************************************************/
-#define TRC_CFG_CTRL_TASK_PRIORITY 1
+#define TRC_CFG_CTRL_TASK_PRIORITY 5
 
  /*******************************************************************************
  * Configuration Macro: TRC_CFG_CTRL_TASK_DELAY
@@ -345,7 +345,7 @@ extern "C" {
  * increases the CPU load of TzCtrl somewhat, but may improve the performance of
  * of the trace streaming, especially if the trace buffer is small.
  ******************************************************************************/
-#define TRC_CFG_CTRL_TASK_DELAY 10
+#define TRC_CFG_CTRL_TASK_DELAY 100
 
  /*******************************************************************************
  * Configuration Macro: TRC_CFG_CTRL_TASK_STACK_SIZE

@@ -12,3 +12,15 @@ Task_1 => 0.255%
 Task_2 => 0.184%
 Task_Writ =>  0.89%
 IDLE => 85,1%
+
+Notre Task_Writ est maintenant bien plus optimisée puisque nous avons modifié my_printf(). *
+Le CPU est maintenant le plus souvent "inactif" mais de manière très fragmentée. 
+
+% CPU Sc�nario 3
+Task_1 => 0.22%
+Task_2 => 0.24%
+Task_Writ =>  0.55%
+IDLE => 95.8%
+
+Task Write est encore plus optimis� vu que nous passons par l'utilisation de la DMA 
+Le CPU est encore plus inactif 

@@ -29,30 +29,17 @@
 
 #include <stdarg.h>
 #include "stm32f0xx.h"
-#include "main.h"
-
-extern xSemaphoreHandle xSemUART2_TC ;
 
 static void printchar(char **str, int c)
 {
-	portBASE_TYPE	xStatus;
-
 	if (str) {
 		**str = c;
 		++(*str);
 	}
 	else
 	{
-		xStatus = xSemaphoreTake(xSemUART2_TC, 100);
-
-		if   (xStatus == pdPASS) {
-			USART2->TDR    = c ;
-		}
-
-		else {
-			while ( (USART2->ISR & USART_ISR_TC) != USART_ISR_TC);
-			USART2->TDR = c;
-		}
+		while ( (USART2->ISR & USART_ISR_TC) != USART_ISR_TC);
+		USART2->TDR = c;
 	}
 }
 

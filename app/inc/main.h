@@ -1,12 +1,5 @@
-/*
- * main.h
- *
- *  Created on: 29 Jan. 2020
- *      Author: gabin
- */
-
-#ifndef APP_INC_MAIN_H_
-#define APP_INC_MAIN_H_
+#ifndef APP_INC_MAIN_H
+#define APP_INC_MAIN_H
 
 // Device header
 #include "stm32f0xx.h"
@@ -14,12 +7,11 @@
 // BSP functions
 #include "bsp.h"
 
-//Clock functions
-#include "clock.h"
-
 // FreeRTOS headers
 #include "FreeRTOSConfig.h"
 #include "FreeRTOS.h"
+
+#include <stdbool.h>
 #include "task.h"
 #include "timers.h"
 #include "semphr.h"
@@ -27,30 +19,22 @@
 #include "event_groups.h"
 #include "stream_buffer.h"
 
-
-
-// Static functions
-void SystemClock_Config	(void);
-
 // Global functions
 int my_printf	(const char *format, ...);
 int my_sprintf	(char *out, const char *format, ...);
 
-// FreeRTOS tasks
-void vTask1 		(void *pvParameters);
-void vTask2 		(void *pvParameters);
-void vTaskWrite 	(void *pvParameters);
 
-// Kernel objects
-xSemaphoreHandle xSem;
+uint8_t DMA_USART2_RX_BUFFER[16];
 
-// Trace User Events Channels
-traceString ue1, ue2;
 
-// Kernel Objects
-xQueueHandle	xConsoleQueue;
+#define ElevatorMoving_bit    11
+#define ElevatorGFloor_bit    6
+#define Elevator1Floor_bit    7
+#define Elevator2Floor_bit    8
+#define ElevatorPalletIn_bit  12
+#define ElevatorPalletOut_bit 9
+#define BoxDistriCreated_bit  0
+#define BoxDistriStart_bit    1
+#define BoxDistriEnd_bit      2
 
-// Define the message_t type as an array of 60 char
-typedef uint8_t message_t[60];
-
-#endif /* APP_INC_MAIN_H_ */
+#endif
